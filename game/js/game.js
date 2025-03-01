@@ -1,4 +1,4 @@
-import { questions } from './questions.js';
+import { questions } from './questions/questions.js';
 import { toggleSettings, onLanguageChange, activeLanguage } from './settings.js';
 import { getInputState, resetInputState } from './input.js';
 import particlesJsConfig from "./particles-js-config.json" with { type: "json" };

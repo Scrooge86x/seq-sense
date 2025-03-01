@@ -1,11 +1,11 @@
 // TODO: Just refactor this entangled shit
 
-import { questions } from './questions.js';
+import { questions } from './questions/questions.js';
 
 const settingsEl = document.querySelector('#settings');
 const getCurrentHeight = () => `${settingsEl.getBoundingClientRect().height}px`;
 
-let languageChangeCallback = () => {};
+let languageChangeCallback = () => { };
 export const onLanguageChange = callback => {
     languageChangeCallback = callback;
 };
@@ -43,7 +43,7 @@ const setActiveLanguage = language => {
 };
 setActiveLanguage('English');
 
-let modeChangeCallback = () => {};
+let modeChangeCallback = () => { };
 export const onModeChange = callback => {
     modeChangeCallback = callback;
 };
@@ -76,12 +76,12 @@ let visible = true;
 const fullHeight = getCurrentHeight();
 export const toggleSettings = async () => {
     const startHeight = getCurrentHeight();
-    const endHeight   = visible ? '0px' : fullHeight;
+    const endHeight = visible ? '0px' : fullHeight;
 
     settingsEl.animate(
         [
             { maxHeight: startHeight },
-            { maxHeight: endHeight   },
+            { maxHeight: endHeight },
         ],
         {
             duration: 200,

@@ -49,9 +49,4 @@ const monthsToNumbers = [
     },
 ];
 
-export default {
-    monthsToNumbers: {
-        name: 'Month to number',
-        questions: monthsToNumbers,
-    },
-};
+export default monthsToNumbers;

@@ -20,7 +20,9 @@ export const resetInputState = wasCorrect => {
     );
 
     if (wasCorrect) {
-        jsConfetti.addConfetti();
+        jsConfetti.addConfetti({
+            confettiNumber: 100,
+        });
         correctSound.play();
     } else {
         jsConfetti.addConfetti({

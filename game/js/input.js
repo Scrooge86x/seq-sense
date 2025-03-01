@@ -3,7 +3,7 @@ const inputEl = document.querySelector('#answer');
 
 inputEl.addEventListener('blur', () => inputEl.focus());
 
-const jsConfetti = new JSConfetti;
+const jsConfetti = new window.JSConfetti;
 const errorSound = new Audio('/game/sounds/error-sound.mp3');
 const correctSound = new Audio('/game/sounds/correct-sound.mp3');
 

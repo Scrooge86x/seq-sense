@@ -4,8 +4,8 @@ const inputEl = document.querySelector('#answer');
 inputEl.addEventListener('blur', () => inputEl.focus());
 
 const jsConfetti = new JSConfetti;
-const errorSound = new Audio('../sounds/error-sound.mp3');
-const correctSound = new Audio('../sounds/correct-sound.mp3');
+const errorSound = new Audio('/game/sounds/error-sound.mp3');
+const correctSound = new Audio('/game/sounds/correct-sound.mp3');
 
 export const resetInputState = wasCorrect => {
     inputEl.value = '';

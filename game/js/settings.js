@@ -13,7 +13,7 @@ export const onLanguageChange = callback => {
 const languageButtons = {};
 const modeButtons = {};
 
-export let activeLanguage = 'English';
+export let activeLanguage = 'Polish';
 export let activeMode = 'monthsToNumbers';
 
 const languageSettingsEl = document.querySelector('#settings-languages');
@@ -37,11 +37,11 @@ const setActiveLanguage = language => {
 
     activeLanguage = language;
     for (const button in modeButtons) {
-        modeButtons[button].innerText = questions[activeLanguage][activeMode].name;
+        modeButtons[button].innerText = questions[activeLanguage][button].name;
     }
     languageChangeCallback();
 };
-setActiveLanguage('English');
+setActiveLanguage('Polish');
 
 let modeChangeCallback = () => { };
 export const onModeChange = callback => {

@@ -23,14 +23,14 @@ export const resetInputState = wasCorrect => {
         jsConfetti.addConfetti({
             confettiNumber: 100,
         });
-        correctSound.load();
+        correctSound.currentTime = 0;
         correctSound.play();
     } else {
         jsConfetti.addConfetti({
             emojis: ['❌', '🤣', '💀'],
             confettiNumber: 10,
         })
-        errorSound.load();
+        errorSound.currentTime = 0;
         errorSound.play();
     }
 };

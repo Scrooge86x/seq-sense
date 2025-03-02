@@ -50,7 +50,7 @@ document.addEventListener('keydown', e => {
             if (currentQuestion.answers.includes(getInputState())) {
                 resetInputState(true);
                 setNewQuestion(getRandomIndex());
-            } else {
+            } else if (getInputState().length) {
                 resetInputState(false);
             }
             break;

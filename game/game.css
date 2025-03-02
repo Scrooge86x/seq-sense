@@ -93,3 +93,36 @@ button {
   text-align: center;
   margin: 0.4em 0 0;
 }
+
+#back-arrow {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+}
+
+#back-arrow::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-top: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+  animation: arrow-move 1s ease-in-out infinite alternate;
+}
+
+@keyframes arrow-move {
+  from {
+    transform: translateX(-4px) rotate(-135deg);
+  }
+  to {
+    transform: translateX(6px) rotate(-135deg);
+  }
+}

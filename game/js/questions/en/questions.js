@@ -1,5 +1,6 @@
 import monthsToNumbers from './months-to-numbers.js';
 import previousLetter from './previous-letter.js';
+import monthLengths from './month-lengths.js';
 
 export default {
     monthsToNumbers: {
@@ -11,5 +12,10 @@ export default {
         name: 'Previous letter',
         translatable: false,
         questions: previousLetter,
+    },
+    monthLengths: {
+        name: 'Month lengths',
+        translatable: true,
+        questions: monthLengths,
     },
 };

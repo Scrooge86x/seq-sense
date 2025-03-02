@@ -75,6 +75,8 @@ button {
   text-align: center;
   font-size: 0.8em;
 
+  transition: border-color 200ms;
+
   &:hover {
     border-color: #fff;
   }

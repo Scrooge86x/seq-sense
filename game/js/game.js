@@ -1,14 +1,14 @@
 import { questions } from './questions/questions.js';
-import { toggleSettings, onLanguageChange, activeLanguage } from './settings.js';
+import { toggleSettings, onLanguageChange, onModeChange, activeMode, activeLanguage } from './settings.js';
 import { getInputState, resetInputState } from './input.js';
 import particlesJsConfig from "./particles-js-config.json" with { type: "json" };
 
-let TODO_activeMode = 'monthsToNumbers';
-document.querySelector('#current-mode').innerText = questions[activeLanguage][TODO_activeMode].name;
+const getActiveModeData = () => questions[activeLanguage][activeMode];
+document.querySelector('#current-mode').innerText = getActiveModeData().name;
 
 let lastRandomIndex = -1;
 const getRandomIndex = () => {
-    const maxIndex = questions[activeLanguage][TODO_activeMode].questions.length;
+    const maxIndex = getActiveModeData().questions.length;
     let randomIndex = Math.floor(Math.random() * maxIndex);
     if (lastRandomIndex == randomIndex) {
         randomIndex = (randomIndex + 1) % maxIndex;
@@ -19,7 +19,7 @@ const getRandomIndex = () => {
 
 let currentQuestion = null;
 const setNewQuestion = index => {
-    const questionList = questions[activeLanguage][TODO_activeMode].questions;
+    const questionList = getActiveModeData().questions;
     currentQuestion = { index, ...questionList[index] };
 
     const questionEl = document.querySelector('#question');
@@ -28,8 +28,17 @@ const setNewQuestion = index => {
 setNewQuestion(getRandomIndex());
 
 onLanguageChange(() => {
-    setNewQuestion(currentQuestion.index);
-    document.querySelector('#current-mode').innerText = questions[activeLanguage][TODO_activeMode].name;
+    if (getActiveModeData().translatable) {
+        setNewQuestion(currentQuestion.index);
+    } else {
+        setNewQuestion(getRandomIndex());
+    }
+    document.querySelector('#current-mode').innerText = getActiveModeData().name;
+});
+
+onModeChange(() => {
+    setNewQuestion(getRandomIndex());
+    document.querySelector('#current-mode').innerText = getActiveModeData().name;
 });
 
 document.addEventListener('keydown', e => {

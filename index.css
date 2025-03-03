@@ -1,37 +1,35 @@
 body {
-    background-color: black;
+  background-color: black;
+  margin: 0;
 }
 
 #container {
-    width: 99vw;
-    height: 98vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #start-game {
-    width: 40em;
-    height: 10em;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border: 2px solid transparent; /* Ukryta ramka */
-    box-shadow: 
-        inset 0 0 7em #39ff14,
-        5px 10px 8em #39ff14;
-    background: transparent;
+  width: 40em;
+  height: 10em;
+  background-color: #2ec114c6;
+  box-shadow: 0 0 15px #39ff14, 0 0 30px #39ff14, 0 0 45px #39ff14;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 a {
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-    font-size: 3em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  font-size: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
 }

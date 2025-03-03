@@ -1,6 +1,7 @@
 body {
   background-color: black;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #container {
@@ -15,14 +16,15 @@ body {
 #start-game {
   width: 40em;
   height: 10em;
-  background-color: #2ec114c6;
-  box-shadow: 0 0 15px #39ff14, 0 0 30px #39ff14, 0 0 45px #39ff14;
+  background-color: #000000a0;
+  box-shadow: 0 0 15px #bebebe, 0 0 30px #bebebe;
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
 }
+
 a {
   text-decoration: none;
   width: 100%;
@@ -31,5 +33,5 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: #ddd;
 }

@@ -4,42 +4,25 @@ import { getInputState, resetInputState } from './input.js';
 import particlesJsConfig from './particles-js-config.json' with { type: 'json' };
 
 const getActiveModeData = () => questions[activeLanguage][activeMode];
-document.querySelector('#current-mode').innerText = getActiveModeData().name;
+const updateModeGuiName = () => document.querySelector('#current-mode').innerText = getActiveModeData().name;
 
-let lastRandomIndex = -1;
+let g_lastRandomIndex = -1;
 const getRandomIndex = () => {
     const maxIndex = getActiveModeData().questions.length;
     let randomIndex = Math.floor(Math.random() * maxIndex);
-    if (lastRandomIndex == randomIndex) {
+    if (g_lastRandomIndex == randomIndex) {
         randomIndex = (randomIndex + 1) % maxIndex;
     }
-    lastRandomIndex = randomIndex;
+    g_lastRandomIndex = randomIndex;
     return randomIndex;
 };
 
-let currentQuestion = null;
-const setNewQuestion = index => {
+let g_currentQuestion = null;
+const setNewQuestion = (index = getRandomIndex()) => {
     const questionList = getActiveModeData().questions;
-    currentQuestion = { index, ...questionList[index] };
-
-    const questionEl = document.querySelector('#question');
-    questionEl.innerText = currentQuestion.question;
+    g_currentQuestion = { index, ...questionList[index] };
+    document.querySelector('#question').innerText = g_currentQuestion.question;
 };
-setNewQuestion(getRandomIndex());
-
-onLanguageChange(() => {
-    if (getActiveModeData().translatable) {
-        setNewQuestion(currentQuestion.index);
-    } else {
-        setNewQuestion(getRandomIndex());
-    }
-    document.querySelector('#current-mode').innerText = getActiveModeData().name;
-});
-
-onModeChange(() => {
-    setNewQuestion(getRandomIndex());
-    document.querySelector('#current-mode').innerText = getActiveModeData().name;
-});
 
 document.addEventListener('keydown', e => {
     if (e.repeat)
@@ -47,9 +30,9 @@ document.addEventListener('keydown', e => {
 
     switch (e.key) {
         case 'Enter':
-            if (currentQuestion.answers.includes(getInputState())) {
+            if (g_currentQuestion.answers.includes(getInputState())) {
                 resetInputState(true);
-                setNewQuestion(getRandomIndex());
+                setNewQuestion();
             } else if (getInputState().length) {
                 resetInputState(false);
             }
@@ -59,5 +42,22 @@ document.addEventListener('keydown', e => {
             break;
     }
 });
+
+onLanguageChange(() => {
+    if (getActiveModeData().translatable) {
+        setNewQuestion(g_currentQuestion.index);
+    } else {
+        setNewQuestion();
+    }
+    updateModeGuiName();
+});
+
+onModeChange(() => {
+    setNewQuestion();
+    updateModeGuiName()
+});
+
+updateModeGuiName();
+setNewQuestion();
 
 particlesJS('particles-js', particlesJsConfig);

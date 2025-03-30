@@ -5,8 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SeqSense</title>
     <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <a href="/game/game.html">Play the game</a>
+    <div id="container">
+      <div
+        id="start-game"
+        data-tilt
+        data-tilt-scale="1.1"
+        data-tilt-max="8"
+        data-tilt-reverse="true"
+      >
+        <a href="/game/game.html">Improve your sense.</a>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.halo.min.js"></script>
+    <script>
+      VANTA.HALO({
+        el: '#container',
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        size: 1.5,
+        color: 0x4e92c6,
+        backgroundColor: 0x1b1b1b,
+      });
+    </script>
   </body>
 </html>

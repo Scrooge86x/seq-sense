@@ -126,3 +126,12 @@ button {
     transform: translateX(6px) rotate(-135deg);
   }
 }
+
+#current-combo {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 5rem;
+  font-weight: bold;
+}

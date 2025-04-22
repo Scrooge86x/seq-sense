@@ -134,4 +134,14 @@ button {
   transform: translateX(-50%);
   font-size: 5rem;
   font-weight: bold;
+  opacity: 0;
+
+  &::after {
+    content: 'COMBO';
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 1;
+    margin-top: -0.5rem;
+  }
 }

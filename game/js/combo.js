@@ -1,11 +1,23 @@
 const currentComboEl = document.querySelector('#current-combo');
 
 let g_currentCombo = 0;
+export const getCurrentCombo = () => g_currentCombo;
+
+export const setCurrentCombo = (combo) => {
+    g_currentCombo = combo;
+    const isComboVisible = g_currentCombo > 1;
+
+    currentComboEl.style.color = '#ddd';
+    currentComboEl.innerText = `${g_currentCombo}x`;
+    currentComboEl.animate([
+        { transform: 'translateX(-50%)', opacity: isComboVisible ? 0 : 1 },
+        { transform: 'translateX(-50%)', opacity: isComboVisible ? 1 : 0 },
+    ], { duration: 300, easing: 'ease-out', fill: 'forwards' });
+};
 
 export const incrementCombo = () => {
-    if (++g_currentCombo < 2) {
+    if (++g_currentCombo < 2)
         return;
-    }
 
     currentComboEl.style.color = '#ddd';
     currentComboEl.innerText = `${g_currentCombo}x`;

@@ -1,6 +1,8 @@
 import { questions } from './questions/questions.js';
 import { toggleSettings, onLanguageChange, onModeChange, activeMode, activeLanguage } from './settings.js';
 import { getInputState, resetInputState } from './input.js';
+import { incrementCombo, resetCombo } from './combo.js';
+
 import particlesJsConfig from './particles-js-config.json' with { type: 'json' };
 
 const getActiveModeData = () => questions[activeLanguage][activeMode];
@@ -32,9 +34,11 @@ document.addEventListener('keydown', e => {
         case 'Enter':
             if (g_currentQuestion.answers.includes(getInputState())) {
                 resetInputState(true);
+                incrementCombo();
                 setNewQuestion();
             } else if (getInputState().length) {
                 resetInputState(false);
+                resetCombo();
             }
             break;
         case 'Escape':

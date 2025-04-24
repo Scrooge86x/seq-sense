@@ -107,15 +107,15 @@ button {
   height: 50px;
   border: 1px solid #ddd;
   border-radius: 50px;
-}
 
-#back-arrow::before {
-  content: '';
-  width: 15px;
-  height: 15px;
-  border-top: 2px solid #ddd;
-  border-right: 2px solid #ddd;
-  animation: arrow-move 1s ease-in-out infinite alternate;
+  &::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+    animation: arrow-move 1s ease-in-out infinite alternate;
+  }
 }
 
 @keyframes arrow-move {
@@ -124,5 +124,24 @@ button {
   }
   to {
     transform: translateX(6px) rotate(-135deg);
+  }
+}
+
+#current-combo {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 5rem;
+  font-weight: bold;
+  opacity: 0;
+
+  &::after {
+    content: 'COMBO';
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 1;
+    margin-top: -0.5rem;
   }
 }

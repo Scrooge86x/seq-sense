@@ -1,11 +1,11 @@
 import { questions } from './questions/questions.js';
-import { toggleSettings, onLanguageChange, onModeChange, activeMode, activeLanguage } from './settings.js';
+import { toggleSettings, onLanguageChange, onModeChange, getActiveMode, getActiveLanguage } from './settings.js';
 import { getInputState, resetInputState } from './input.js';
 import { incrementCombo, resetCombo } from './combo.js';
 
 import particlesJsConfig from './particles-js-config.json' with { type: 'json' };
 
-const getActiveModeData = () => questions[activeLanguage][activeMode];
+const getActiveModeData = () => questions[getActiveLanguage()][getActiveMode()];
 const updateModeGuiName = () => document.querySelector('#current-mode').innerText = getActiveModeData().name;
 
 let g_lastRandomIndex = -1;
@@ -58,7 +58,7 @@ onLanguageChange(() => {
 
 onModeChange(() => {
     setNewQuestion();
-    updateModeGuiName()
+    updateModeGuiName();
 });
 
 updateModeGuiName();

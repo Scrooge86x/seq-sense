@@ -1,7 +1,10 @@
 import { questions } from './questions/questions.js';
 
-export let activeLanguage = 'Polish';
-export let activeMode = 'monthsToNumbers';
+let activeLanguage = 'Polish';
+export const getActiveLanguage = () => activeLanguage;
+
+let activeMode = 'monthsToNumbers';
+export const getActiveMode = () => activeMode;
 
 let languageChangeCallback = () => { };
 export const onLanguageChange = callback => {

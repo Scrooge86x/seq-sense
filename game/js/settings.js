@@ -1,10 +1,10 @@
 import { questions } from './questions/questions.js';
 
-let activeLanguage = 'Polish';
-export const getActiveLanguage = () => activeLanguage;
+let g_activeLanguage = 'Polish';
+export const getActiveLanguage = () => g_activeLanguage;
 
-let activeMode = 'monthsToNumbers';
-export const getActiveMode = () => activeMode;
+let g_activeMode = 'monthsToNumbers';
+export const getActiveMode = () => g_activeMode;
 
 let languageChangeCallback = () => { };
 export const onLanguageChange = callback => {
@@ -23,25 +23,25 @@ const initModeButtons = () => {
         if (!(mode in g_modeButtons))
             return;
 
-        const oldButton = g_modeButtons[activeMode];
+        const oldButton = g_modeButtons[g_activeMode];
         oldButton.removeAttribute('style');
 
         const newButton = g_modeButtons[mode];
         newButton.style.borderColor = '#7fff00';
 
-        activeMode = mode;
+        g_activeMode = mode;
         modeChangeCallback();
     };
 
     const modeSettingsEl = document.querySelector('#settings-modes');
-    for (const mode in questions[activeLanguage]) {
+    for (const mode in questions[g_activeLanguage]) {
         const button = document.createElement('button');
-        button.innerText = questions[activeLanguage][mode].name;
+        button.innerText = questions[g_activeLanguage][mode].name;
         button.addEventListener('click', () => setActiveMode(mode));
         modeSettingsEl.appendChild(button);
         g_modeButtons[mode] = button;
     }
-    setActiveMode(activeMode);
+    setActiveMode(g_activeMode);
 };
 
 const initLanguageButtons = () => {
@@ -50,15 +50,15 @@ const initLanguageButtons = () => {
         if (!(language in languageButtons))
             return;
 
-        const oldButton = languageButtons[activeLanguage];
+        const oldButton = languageButtons[g_activeLanguage];
         oldButton.removeAttribute('style');
 
-        activeLanguage = language;
-        const newButton = languageButtons[activeLanguage];
+        g_activeLanguage = language;
+        const newButton = languageButtons[g_activeLanguage];
         newButton.style.borderColor = '#7fff00';
 
         for (const button in g_modeButtons) {
-            g_modeButtons[button].innerText = questions[activeLanguage][button].name;
+            g_modeButtons[button].innerText = questions[g_activeLanguage][button].name;
         }
         languageChangeCallback();
     };
@@ -71,7 +71,7 @@ const initLanguageButtons = () => {
         languageSettingsEl.appendChild(button);
         languageButtons[language] = button;
     }
-    setActiveLanguage(activeLanguage);
+    setActiveLanguage(g_activeLanguage);
 };
 
 initModeButtons();

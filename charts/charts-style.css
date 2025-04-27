@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+}
+
+#container {
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#buttonContainer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.btn-mode {
+    padding: 8px 15px;
+    background: #4a6baf;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-mode:hover {
+    background: #3a5a9f;
+}
+
+.btn-mode:active {
+    background: #2a4a8f;
+    font-weight: bold;
+}
+
+canvas {
+    background: transparent;
+}

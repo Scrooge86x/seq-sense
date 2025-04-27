@@ -16,7 +16,7 @@ export const saveEndedCombo = (modeName, combo) => {
         endedCombos[modeName] = [];
     }
 
-    endedCombos[modeName].push(combo);
+    endedCombos[modeName].push([Date.now(), combo]);
     localStorage.setItem('endedCombos', JSON.stringify(endedCombos));
 };
 

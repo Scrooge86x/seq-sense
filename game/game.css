@@ -145,3 +145,19 @@ button {
     margin-top: -0.5rem;
   }
 }
+
+#stats-div {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+}
+
+#stats {
+  text-decoration: underline;
+  font-size: large;
+}
+
+#stats:visited {
+  color: #fff;
+}

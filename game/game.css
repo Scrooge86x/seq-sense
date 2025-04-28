@@ -146,18 +146,12 @@ button {
   }
 }
 
-#stats-div {
+#check-stats {
   position: fixed;
   right: 0;
   bottom: 0;
   margin: 10px;
-}
-
-#stats {
-  text-decoration: underline;
-  font-size: large;
-}
-
-#stats:visited {
   color: #fff;
+  text-decoration: underline;
+  font-size: 1.3rem;
 }

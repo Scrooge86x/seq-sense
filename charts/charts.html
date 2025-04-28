@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Combo charts</title>
-    <link rel="icon" href="../favicon.ico" />
-    <link rel="stylesheet" href="./charts-style.css">
-</head>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/charts/charts.css" />
+  </head>
 
-<body>
-    <a href="../game/game.html" id="back-arrow"></a>
+  <body>
+    <a href="/game/game.html" id="back-arrow"></a>
     <div id="container">
+      <div id="buttonContainer">
+        <button class="btn-mode" data-mode="monthsToNumbers">
+          Month to number
+        </button>
+        <button class="btn-mode" data-mode="previousLetter">
+          Previous letter
+        </button>
+        <button class="btn-mode" data-mode="monthLengths">Month length</button>
+      </div>
 
-        <div id="buttonContainer">
-            <button class="btn-mode" data-mode="monthsToNumbers">Month to number</button>
-            <button class="btn-mode" data-mode="previousLetter">Previous letter</button>
-            <button class="btn-mode" data-mode="monthLengths">Month length</button>
-        </div>
+      <canvas id="ended-combos-chart"></canvas>
 
-        <canvas id="ended-combos-chart"></canvas>
-
-        <canvas id="response-times-chart"></canvas>
+      <canvas id="response-times-chart"></canvas>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
     <script>
-        VANTA.FOG({
-            el: "body",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00
-        })
+      VANTA.FOG({
+        el: '#container',
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+      });
     </script>
 
     <script type="module" src="charts.js"></script>
-</body>
-
+  </body>
 </html>

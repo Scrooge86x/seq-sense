@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Combo charts</title>
     <link rel="icon" href="../favicon.ico" />
-    <link rel="stylesheet" href="./charts.css">
-</head>
+    <link rel="stylesheet" href="./charts.css" />
+  </head>
 
-<body>
+  <body>
     <a href="/game/game.html" id="back-arrow"></a>
     <div id="container">
+      <div id="select-container">
+        <select id="mode-select">
+          <option value="" disabled>Select mode...</option>
+        </select>
 
-        <div id="select-container">
-            <select id="mode-select">
-                <option value="" selected disabled>Select mode...</option>
-            </select>
+        <select id="data-type-select">
+          <option value="" disabled>Select data...</option>
+          <option value="combo" selected>Combos</option>
+          <option value="time">Response Times</option>
+        </select>
+      </div>
 
-            <select id="data-type-select">
-                <option value="" selected disabled>Select data...</option>
-                <option value="combo">Combos</option>
-                <option value="time">Response Times</option>
-            </select>
-        </div>
-
-        <div id="chart-div">
-            <canvas id="chart"></canvas>
-        </div>
+      <div id="chart-div">
+        <canvas id="chart"></canvas>
+      </div>
     </div>
 
     <script type="module" src="charts.js"></script>
-</body>
-
+  </body>
 </html>

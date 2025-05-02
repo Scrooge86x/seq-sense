@@ -1,15 +1,22 @@
-import('https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js');
+await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js');
 
 import { getSavedEndedCombos, getSavedResponseTimes } from '../shared-js/save-manager.js';
 import modes from '../game/js/questions/en/questions.js';
 
 const initializeModeSelect = () => {
     const modeSelect = document.getElementById('mode-select');
-    
+
+    let isFirstElement = true;
     for (const [modeId, modeData] of Object.entries(modes)) {
         const option = document.createElement('option');
         option.value = modeId;
         option.textContent = modeData.name;
+
+        if (isFirstElement) {
+            option.selected = true;
+            isFirstElement = false;
+        }
+
         modeSelect.appendChild(option);
     }
 };
@@ -36,14 +43,14 @@ const generateChart = (dataX, dataY, id, dataComment = null) => {
             scales: {
                 x: {
                     grid: {
-                        color:  "#fff",
+                        color: "#fff",
                     },
                     ticks: {
-                        color:  "#fff",
+                        color: "#fff",
                     },
                     border: {
                         width: 2,
-                        color:  "#fff",
+                        color: "#fff",
                     }
                 },
                 y: {
@@ -52,11 +59,11 @@ const generateChart = (dataX, dataY, id, dataComment = null) => {
                         color: "#fff",
                     },
                     ticks: {
-                        color:  "#fff",
+                        color: "#fff",
                     },
                     border: {
                         width: 2,
-                        color:  "#fff",
+                        color: "#fff",
                     }
                 }
             },
@@ -92,7 +99,7 @@ const prepareDataCombo = (mode) => {
     });
 
     const oldChart = Chart.getChart("chart");
-    if (oldChart) 
+    if (oldChart)
         oldChart.destroy();
 
     generateChart(data1X, data1Y, "chart", data1Comment);
@@ -103,7 +110,7 @@ const prepareDataTimes = (mode) => {
     const data2X = Array.from({ length: data2Y.length }, (_, i) => i + 1);
 
     const oldChart = Chart.getChart("chart");
-    if (oldChart) 
+    if (oldChart)
         oldChart.destroy();
 
     generateChart(data2X, data2Y, "chart");
@@ -112,7 +119,7 @@ const prepareDataTimes = (mode) => {
 const updateChart = () => {
     const mode = document.getElementById('mode-select').value;
     const dataType = document.getElementById('data-type-select').value;
-    
+
     if (dataType === 'combo') {
         prepareDataCombo(mode);
     } else if (dataType === 'time') {
@@ -124,3 +131,4 @@ document.getElementById('data-type-select').addEventListener('change', updateCha
 document.getElementById('mode-select').addEventListener('change', updateChart);
 
 initializeModeSelect();
+prepareDataCombo(document.getElementById('mode-select').value);

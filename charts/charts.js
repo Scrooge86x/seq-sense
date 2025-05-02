@@ -10,7 +10,7 @@ const generateChart = (dataX, dataY, id, dataComment = null) => {
         data: {
             labels: dataX,
             datasets: [{
-                label: id.includes('ended-combos') ? 'Ended Combos' : 'Response Times [ms]',
+                label: dataComment ? 'Ended Combos' : 'Response Times [ms]',
                 data: dataY,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1,
@@ -22,8 +22,30 @@ const generateChart = (dataX, dataY, id, dataComment = null) => {
         options: {
             responsive: true,
             scales: {
+                x: {
+                    grid: {
+                        color:  "#fff",
+                    },
+                    ticks: {
+                        color:  "#fff",
+                    },
+                    border: {
+                        width: 2,
+                        color:  "#fff",
+                    }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: "#fff",
+                    },
+                    ticks: {
+                        color:  "#fff",
+                    },
+                    border: {
+                        width: 2,
+                        color:  "#fff",
+                    }
                 }
             },
             plugins: {
@@ -41,7 +63,7 @@ const generateChart = (dataX, dataY, id, dataComment = null) => {
     return new Chart(ctx, config);
 }
 
-const prepareData = (mode) => {
+const prepareDataCombo = (mode) => {
     const data1 = getSavedEndedCombos(mode);
     const data1Y = data1.map(item => item[1]);
     const data1X = Array.from({ length: data1Y.length }, (_, i) => i + 1);
@@ -57,21 +79,34 @@ const prepareData = (mode) => {
         }).format(date);
     });
 
+    const oldChart = Chart.getChart("chart");
+    if (oldChart) 
+        oldChart.destroy();
+
+    generateChart(data1X, data1Y, "chart", data1Comment);
+};
+
+const prepareDataTimes = (mode) => {
     const data2Y = getSavedResponseTimes(mode);
     const data2X = Array.from({ length: data2Y.length }, (_, i) => i + 1);
 
-    const oldChart1 = Chart.getChart("ended-combos-chart");
-    if (oldChart1) oldChart1.destroy();
-    const oldChart2 = Chart.getChart("response-times-chart");
-    if (oldChart2) oldChart2.destroy();
+    const oldChart = Chart.getChart("chart");
+    if (oldChart) 
+        oldChart.destroy();
 
-    generateChart(data1X, data1Y, "ended-combos-chart", data1Comment);
-    generateChart(data2X, data2Y, "response-times-chart");
-};
+    generateChart(data2X, data2Y, "chart");
+}
 
 document.querySelectorAll(".btn-mode").forEach(button => {
     button.addEventListener("click", () => {
         const mode = button.getAttribute("data-mode");
-        prepareData(mode);
+        prepareDataCombo(mode);
+    })
+});
+
+document.querySelectorAll(".btn-mode2").forEach(button => {
+    button.addEventListener("click", () => {
+        const mode = button.getAttribute("data-mode");
+        prepareDataTimes(mode, 2);
     })
 });

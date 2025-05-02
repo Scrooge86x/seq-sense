@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
+  background-color: #0d0d0d;
 }
 
 #container {
@@ -11,15 +12,25 @@ body {
   flex-direction: column;
 }
 
-#buttonContainer {
+#button-container {
   display: flex;
   gap: 10px;
   justify-content: center;
+  align-content: center;
   margin: 20px 0;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
-.btn-mode {
+#upper-buttons,
+#lower-buttons {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn-mode,
+.btn-mode2 {
   padding: 8px 15px;
   background: #4a6baf;
   color: white;
@@ -28,13 +39,19 @@ body {
   cursor: pointer;
 }
 
-.btn-mode:hover {
+.btn-mode:hover,
+.btn-mode2:hover {
   background: #3a5a9f;
 }
 
-.btn-mode:active {
+.btn-mode:active,
+.btn-mode2:hover {
   background: #2a4a8f;
   font-weight: bold;
+}
+
+#chart-div {
+  height: 87vh;
 }
 
 canvas {
@@ -70,6 +87,7 @@ canvas {
   from {
     transform: translateX(-4px) rotate(-135deg);
   }
+
   to {
     transform: translateX(6px) rotate(-135deg);
   }

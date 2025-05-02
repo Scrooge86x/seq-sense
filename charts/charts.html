@@ -13,17 +13,16 @@
     <a href="/game/game.html" id="back-arrow"></a>
     <div id="container">
 
-        <div id="button-container">
-            <div id="upper-buttons">
-                <button class="btn-mode" data-mode="monthsToNumbers">Month to number combo</button>
-                <button class="btn-mode" data-mode="previousLetter">Previous letter combo</button>
-                <button class="btn-mode" data-mode="monthLengths">Month length combo</button>
-            </div>
-            <div id="lower-buttons">
-                <button class="btn-mode2" data-mode="monthsToNumbers">Month to number times</button>
-                <button class="btn-mode2" data-mode="previousLetter">Previous letter times</button>
-                <button class="btn-mode2" data-mode="monthLengths">Month length times</button>
-            </div>
+        <div id="select-container">
+            <select id="mode-select">
+                <option value="" selected disabled>Select mode...</option>
+            </select>
+
+            <select id="data-type-select">
+                <option value="" selected disabled>Select data...</option>
+                <option value="combo">Combos</option>
+                <option value="time">Response Times</option>
+            </select>
         </div>
 
         <div id="chart-div">

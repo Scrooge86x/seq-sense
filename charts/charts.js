@@ -1,6 +1,18 @@
 import('https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js');
 
 import { getSavedEndedCombos, getSavedResponseTimes } from '../shared-js/save-manager.js';
+import modes from '../game/js/questions/en/questions.js';
+
+const initializeModeSelect = () => {
+    const modeSelect = document.getElementById('mode-select');
+    
+    for (const [modeId, modeData] of Object.entries(modes)) {
+        const option = document.createElement('option');
+        option.value = modeId;
+        option.textContent = modeData.name;
+        modeSelect.appendChild(option);
+    }
+};
 
 const generateChart = (dataX, dataY, id, dataComment = null) => {
     const ctx = document.getElementById(id).getContext('2d');
@@ -97,16 +109,18 @@ const prepareDataTimes = (mode) => {
     generateChart(data2X, data2Y, "chart");
 }
 
-document.querySelectorAll(".btn-mode").forEach(button => {
-    button.addEventListener("click", () => {
-        const mode = button.getAttribute("data-mode");
+const updateChart = () => {
+    const mode = document.getElementById('mode-select').value;
+    const dataType = document.getElementById('data-type-select').value;
+    
+    if (dataType === 'combo') {
         prepareDataCombo(mode);
-    })
-});
+    } else if (dataType === 'time') {
+        prepareDataTimes(mode);
+    }
+};
 
-document.querySelectorAll(".btn-mode2").forEach(button => {
-    button.addEventListener("click", () => {
-        const mode = button.getAttribute("data-mode");
-        prepareDataTimes(mode, 2);
-    })
-});
+document.getElementById('data-type-select').addEventListener('change', updateChart);
+document.getElementById('mode-select').addEventListener('change', updateChart);
+
+initializeModeSelect();

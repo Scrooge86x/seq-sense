@@ -29,7 +29,7 @@ const generateChart = (dataX, dataY, id, tickCallback, dataComment = null) => {
         data: {
             labels: dataX,
             datasets: [{
-                label: dataComment ? 'Ended Combos' : 'Response Times [ms]',
+                label: dataComment ? 'Ended Combos' : 'Response Times',
                 data: dataY,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1,
@@ -108,8 +108,7 @@ const prepareData = (mode) => {
     if (oldChart1)
         oldChart1.destroy();
 
-    generateChart(data1X, data1Y, "chart-combos", (value) => value, data1Comment);
-
+    generateChart(data1X, data1Y, "chart-combos", (value) => `${value}x`, data1Comment);
 
     const data2Y = getSavedResponseTimes(mode);
     const data2X = Array.from({ length: data2Y.length }, (_, i) => i + 1);
@@ -121,16 +120,8 @@ const prepareData = (mode) => {
     generateChart(data2X, data2Y, "chart-times", (value) => `${value} [ms]`);
 };
 
-const prepareDataTimes = (mode) => {
-}
-
-const updateChart = () => {
-
-};
-
 document.getElementById('mode-select').addEventListener('change', () => {
     const mode = document.getElementById('mode-select').value;
-
     prepareData(mode);
 });
 

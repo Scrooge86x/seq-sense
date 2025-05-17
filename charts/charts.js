@@ -21,9 +21,9 @@ const initializeModeSelect = () => {
     }
 };
 
-const generateChart = (dataX, dataY, id, tickMode, dataComment = null) => {
+const generateChart = (dataX, dataY, id, tickCallback, dataComment = null) => {
     const ctx = document.getElementById(id).getContext('2d');
-    
+
     const config = {
         type: 'line',
         data: {
@@ -55,11 +55,11 @@ const generateChart = (dataX, dataY, id, tickMode, dataComment = null) => {
                 },
                 y: {
                     beginAtZero: true,
-                    ticks: tickMode,
                     grid: {
                         color: "#fff",
                     },
                     ticks: {
+                        callback: tickCallback,
                         color: "#fff",
                     },
                     border: {
@@ -108,7 +108,7 @@ const prepareData = (mode) => {
     if (oldChart1)
         oldChart1.destroy();
 
-    generateChart(data1X, data1Y, "chart-combos", {callback: (value) => value}, data1Comment);
+    generateChart(data1X, data1Y, "chart-combos", (value) => value, data1Comment);
 
 
     const data2Y = getSavedResponseTimes(mode);
@@ -118,14 +118,14 @@ const prepareData = (mode) => {
     if (oldChart2)
         oldChart2.destroy();
 
-    generateChart(data2X, data2Y, "chart-times", {callback: (value) => `${value}[ms]`});
+    generateChart(data2X, data2Y, "chart-times", (value) => `${value} [ms]`);
 };
 
 const prepareDataTimes = (mode) => {
 }
 
 const updateChart = () => {
-    
+
 };
 
 document.getElementById('mode-select').addEventListener('change', () => {

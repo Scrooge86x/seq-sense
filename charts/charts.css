@@ -50,7 +50,9 @@ body {
 }
 
 #chart-div {
-  width: 50vw;
+  width: calc(50vw - 60px);
+  gap: 50px;
+  margin-left: 30px;
   height: 90vh;
   display: flex;
   flex-direction: row;

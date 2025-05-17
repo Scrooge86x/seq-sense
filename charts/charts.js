@@ -21,9 +21,9 @@ const initializeModeSelect = () => {
     }
 };
 
-const generateChart = (dataX, dataY, id, dataComment = null) => {
+const generateChart = (dataX, dataY, id, tickMode, dataComment = null) => {
     const ctx = document.getElementById(id).getContext('2d');
-
+    
     const config = {
         type: 'line',
         data: {
@@ -55,6 +55,7 @@ const generateChart = (dataX, dataY, id, dataComment = null) => {
                 },
                 y: {
                     beginAtZero: true,
+                    ticks: tickMode,
                     grid: {
                         color: "#fff",
                     },
@@ -74,6 +75,11 @@ const generateChart = (dataX, dataY, id, dataComment = null) => {
                             return dataComment[context.dataIndex];
                         } : undefined
                     }
+                },
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
                 }
             }
         }
@@ -82,7 +88,7 @@ const generateChart = (dataX, dataY, id, dataComment = null) => {
     return new Chart(ctx, config);
 }
 
-const prepareDataCombo = (mode) => {
+const prepareData = (mode) => {
     const data1 = getSavedEndedCombos(mode);
     const data1Y = data1.map(item => item[1]);
     const data1X = Array.from({ length: data1Y.length }, (_, i) => i + 1);
@@ -98,37 +104,35 @@ const prepareDataCombo = (mode) => {
         }).format(date);
     });
 
-    const oldChart = Chart.getChart("chart");
-    if (oldChart)
-        oldChart.destroy();
+    const oldChart1 = Chart.getChart("chart-combos");
+    if (oldChart1)
+        oldChart1.destroy();
 
-    generateChart(data1X, data1Y, "chart", data1Comment);
-};
+    generateChart(data1X, data1Y, "chart-combos", {callback: (value) => value}, data1Comment);
 
-const prepareDataTimes = (mode) => {
+
     const data2Y = getSavedResponseTimes(mode);
     const data2X = Array.from({ length: data2Y.length }, (_, i) => i + 1);
 
-    const oldChart = Chart.getChart("chart");
-    if (oldChart)
-        oldChart.destroy();
+    const oldChart2 = Chart.getChart("chart-times");
+    if (oldChart2)
+        oldChart2.destroy();
 
-    generateChart(data2X, data2Y, "chart");
+    generateChart(data2X, data2Y, "chart-times", {callback: (value) => `${value}[ms]`});
+};
+
+const prepareDataTimes = (mode) => {
 }
 
 const updateChart = () => {
-    const mode = document.getElementById('mode-select').value;
-    const dataType = document.getElementById('data-type-select').value;
-
-    if (dataType === 'combo') {
-        prepareDataCombo(mode);
-    } else if (dataType === 'time') {
-        prepareDataTimes(mode);
-    }
+    
 };
 
-document.getElementById('data-type-select').addEventListener('change', updateChart);
-document.getElementById('mode-select').addEventListener('change', updateChart);
+document.getElementById('mode-select').addEventListener('change', () => {
+    const mode = document.getElementById('mode-select').value;
+
+    prepareData(mode);
+});
 
 initializeModeSelect();
-prepareDataCombo(document.getElementById('mode-select').value);
+prepareData(document.getElementById('mode-select').value);

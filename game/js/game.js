@@ -2,7 +2,7 @@ import { questions } from './questions/questions.js';
 import { toggleSettings, onLanguageChange, onModeChange, getActiveMode, getActiveLanguage } from './settings.js';
 import { getInputState, resetInputState } from './input.js';
 import { getCurrentCombo, incrementCombo, resetCombo, setCurrentCombo } from './combo.js';
-import { getSavedCurrentCombo, saveCurrentCombo, saveEndedCombo, saveResponseTime } from './save-manager.js';
+import { getSavedCurrentCombo, saveCurrentCombo, saveEndedCombo, saveResponseTime } from '../../shared-js/save-manager.js';
 
 import particlesJsConfig from './particles-js-config.json' with { type: 'json' };
 

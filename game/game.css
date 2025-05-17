@@ -145,3 +145,13 @@ button {
     margin-top: -0.5rem;
   }
 }
+
+#check-stats {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  color: #fff;
+  text-decoration: underline;
+  font-size: 1.3rem;
+}

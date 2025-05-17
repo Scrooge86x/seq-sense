@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  background-color: #0d0d0d;
+}
+
+#container {
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#select-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+#mode-select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: #0d0d0d;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  width: 200px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#mode-select:hover {
+  border-color: #e0e0e0;
+}
+
+#mode-select {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNCAyNCcgZmlsbD0nbm9uZScgc3Ryb2tlPSd3aGl0ZScgc3Ryb2tlLXdpZHRoPScyJyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnPjxwb2x5bGluZSBwb2ludHM9JzYgOSAxMiAxNSAxOCA5Jz48L3BvbHlsaW5lPjwvc3ZnPg==');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 1em;
+  padding-right: 2.5em;
+}
+
+#chart-div {
+  width: 50vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#chart-div:first-child {
+  margin-right: 50px;
+}
+
+canvas {
+  background: transparent;
+}
+
+#back-arrow {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+
+  &::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+    animation: arrow-move 1s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes arrow-move {
+  from {
+    transform: translateX(-4px) rotate(-135deg);
+  }
+
+  to {
+    transform: translateX(6px) rotate(-135deg);
+  }
+}

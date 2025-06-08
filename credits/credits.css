@@ -44,7 +44,7 @@ canvas {
   margin-right: auto;
   text-align: start;
   border: 5px solid white;
-  padding: 30px;
+  padding: 10px 30px;
   font-size: 70%;
   z-index: 10;
   position: relative;

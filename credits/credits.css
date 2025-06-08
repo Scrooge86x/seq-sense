@@ -14,7 +14,7 @@ header {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 20vh;
+  height: 25vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +81,11 @@ canvas {
   height: 99999px;
   background-repeat: no-repeat;
   background-position: 0 0;
-  background-image: conic-gradient(rgba(0, 0, 0, 0), #ffffff, rgba(0, 0, 0, 0) 25%);
+  background-image: conic-gradient(
+    rgba(0, 0, 0, 0),
+    #ffffff,
+    rgba(0, 0, 0, 0) 25%
+  );
   animation: rotate 4s linear infinite;
 }
 
